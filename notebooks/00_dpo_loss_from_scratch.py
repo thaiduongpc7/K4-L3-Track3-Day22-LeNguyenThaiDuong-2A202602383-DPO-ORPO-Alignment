@@ -21,6 +21,9 @@
 import sys
 from pathlib import Path
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
 ROOT = next(p for p in (Path.cwd(), *Path.cwd().parents) if (p / "lab22" / "config.py").exists())
 sys.path.insert(0, str(ROOT))
 
@@ -59,8 +62,9 @@ print(f"sum log p = {total.item():.3f}   mean log p = {mean.item():.3f}")
 # %%
 def my_dpo_loss(pc, pr, rc, rr, beta=0.1):
     """pc/pr: policy log-prob chosen/rejected; rc/rr: reference. Trả về loss trung bình."""
-    # TODO: viết bằng torch.nn.functional.logsigmoid
-    return None
+    chosen_reward = beta * (pc - rc)
+    rejected_reward = beta * (pr - rr)
+    return -torch.nn.functional.logsigmoid(chosen_reward - rejected_reward).mean()
 
 
 # %%
