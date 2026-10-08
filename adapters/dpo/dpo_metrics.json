@@ -1,0 +1,22 @@
+{
+  "compute_tier": "T4",
+  "base_model": "unsloth/Qwen2.5-0.5B-Instruct-bnb-4bit",
+  "reference": "models/sft-merged (precomputed)",
+  "pref_dataset": "sailor2/sea-ultrafeedback-onpolicy",
+  "beta": 0.1,
+  "lr": 5e-06,
+  "loss_type": [
+    "sigmoid"
+  ],
+  "epochs": 1.0,
+  "final_train_loss": 0.6805863624964005,
+  "first_logged_loss": 0.6963812828063964,
+  "end_chosen_reward": 0.10466539504704997,
+  "end_rejected_reward": 0.0581443795847008,
+  "end_reward_gap": 0.046521015488542615,
+  "eval_chosen_reward": 0.11061884780838803,
+  "eval_rejected_reward": 0.05548856923573273,
+  "eval_reward_gap": 0.05513027896868843,
+  "eval_reward_accuracy": 0.6329113924050633,
+  "diagnosis": "INTENDED"
+}
